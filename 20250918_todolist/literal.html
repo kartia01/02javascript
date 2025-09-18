@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div><span></span></div>
+    <div><a href=""></a></div>
+    <script>
+        let url = "naver.com"
+        let str = "안녕하세요"
+        let name = "홍길동"
+        let age = 10
+
+        document.write(name + '님 로그인하셨습니다.' + str + "당신의 나이는" + age);
+        document.write("<div><span>" + name + "</span></div>");
+        document.write("<div><a href='" + url +"'>" + name + "</a></div>");
+        document.write(`<div><a href="${url}">${name}</a></div>`);
+    </script>
+</body>
+</html>

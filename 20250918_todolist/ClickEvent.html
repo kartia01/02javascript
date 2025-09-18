@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="view"><span>자료넣기</span></div>
+    <!-- <button onclick="insertData()">입력하기</button> -->
+    <button class="btn">입력하기</button>
+    <script>
+        function insertData(){
+            // alert("test");
+            // document.getElementsByClassName("view")[0].innerHTML = '안녕하세요';
+            document.querySelector("div.view span").innerHTML = '안녕하세요';
+        }
+        // document.querySelector(".btn").addEventListener("이벤트이름",function(){})
+        // dom.addEventListener("이벤트이름",무명함수)
+        // dom.addEventListener("이벤트이름",무명함수) -함수에 소가로()는 빼고
+        // document.querySelector(".btn").addEventListener("click",insertData);
+        document.querySelector(".btn").addEventListener("click", function () {
+            document.querySelector("div.view span").innerHTML = '안녕하세요';
+        });
+
+        const btnElem = document.querySelector('.btn')
+        const insertDataElem = document.querySelector('div.view span')
+
+        btnElem.querySelector(".btn").addEventListener("click",function(){
+            insertDataElem.innerHTML = "감사합니다."
+        })
+
+        // $(".btn").click(name)
+        // $(".btn").on("click",function(){})
+    </script>
+</body>
+</html>
