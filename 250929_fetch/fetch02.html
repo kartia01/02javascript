@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.rtl.min.css"
+        integrity="sha512-4W9f7EnJgM33kD11Ux2XNF9DSpJ7LoQXCvBNhzKTorRSyjPHmjXhHMZMafIYqYvTNWahUk2ulNsarMMLDEv4zA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            ul, li {
+                list-style : none;
+                padding:0;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container py-3">
+        <h3>블로그 리스트</h3>
+        <hr />
+
+        <ul class="viewlist">
+    
+        </ul>
+        <div class=" d-flex justify-content-end">
+            <button class="btn btn-primary">글쓰기</button>
+        </div>
+    </div>
+    <script>
+        const viewListElem = document.querySelector(".viewlist")
+        async function fn1(limit, size) {
+            const res = await fetch(
+                'https://jsonplaceholder.typicode.com/posts?_sort=id&_order=desc'
+            );
+            // (res)ponse : 요청해서 받는다.
+            // asc : 오름차순, desc : 내림차순
+            const data = await res.json();
+            // let size = 10;
+            let sData = limit;
+            let eData = limit + size;
+            
+            let viewData = "";
+
+            // console.log(data);
+            for (let i = sData; i < eData; i++) {
+                const post = data[i];
+                // console.log("순번[" + i + "] : " + post);
+                // console.log(post);
+                
+                const userRes = await fetch(
+                    "https://jsonplaceholder.typicode.com/users/" + post.userId
+                );
+                const user = await userRes.json();
+                // console.log(user);
+
+                console.log("no :" + i);
+                console.log("제목 :" + post.title);
+                console.log("이름 :" + user.name);
+                console.log("이메일 :" + user.email);
+                console.log("--------------------------------");
+
+                viewData += `<li class="d-flex flex-column flex-md-row justify-content-between">
+                <div class="d-flex gap-2">
+                    <div>${post.id}</div>
+                    <div><a href="postView.html?id=${post.id}&name=${user.name}">${post.title}</a></div>
+                </div>
+                <div class="d-flex align-self-end gap-2">
+                    <div>${user.name}</div>
+                    <div>${user.email}</div>
+                </div>
+                </li>
+                <li><hr /></li>`
+            }
+
+            viewListElem.innerHTML = viewData;
+        }
+        fn1(0, 5);
+    </script>
+</body>
+
+</html>
